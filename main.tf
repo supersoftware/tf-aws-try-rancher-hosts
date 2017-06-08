@@ -32,17 +32,6 @@ module "staging_cluster" {
   cluster_instance_security_group_id = "${aws_security_group.cluster_instance_sg.id}"
 }
 
-# Cluster instance security group
-resource "aws_security_group" "cluster_instance_sg" {
-  name        = "Rancher-Cluster-Instances"
-  description = "Rules for connected Rancher host machines. These are the hosts that run containers placed on the cluster."
-  vpc_id      = "${var.target_vpc_id}"
-
-  lifecycle {
-    create_before_destroy = true
-  }
-}
-
 # Autoscaling launch configuration
 resource "aws_launch_configuration" "cluster_launch_conf" {
   name = "Launch-Config"
@@ -66,7 +55,7 @@ resource "aws_launch_configuration" "cluster_launch_conf" {
 
   # Misc
   spot_price        = "${var.spot_price}"
-  instance_type     = "m4.large"
+  instance_type     = "i3.xlarge"
   enable_monitoring = true
 
   lifecycle {
