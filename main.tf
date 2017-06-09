@@ -58,6 +58,11 @@ resource "aws_launch_configuration" "cluster_launch_conf" {
   instance_type     = "i3.xlarge"
   enable_monitoring = true
 
+  root_block_device {
+    # 8GB is too small so increased to 32
+    volume_size = 32
+  }
+
   lifecycle {
     create_before_destroy = true
   }
