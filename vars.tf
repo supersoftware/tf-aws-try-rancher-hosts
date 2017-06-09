@@ -28,7 +28,7 @@ variable "cluster_name" {
 }
 
 variable "target_vpc_id" {
-  description = ""
+  description = "The ID of the VPC in which the hosts would be placed."
 }
 
 variable "rancheros_ami" {
